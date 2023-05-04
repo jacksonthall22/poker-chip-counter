@@ -44,15 +44,17 @@ export default defineComponent({
                @value-changed="onValueChanged"
                ref="chip" />
     <p>× {{numChips}}</p>
-    <div class="button-row">
-      <UpdateNumChipsButton :d-chips=1 @click="updateNumChips" />
-      <UpdateNumChipsButton :d-chips=5 @click="updateNumChips" />
-      <UpdateNumChipsButton :d-chips=10 @click="updateNumChips" />
-    </div>
-    <div class="button-row">
-      <UpdateNumChipsButton :d-chips=-1 @click="updateNumChips" />
-      <UpdateNumChipsButton :d-chips=-5 @click="updateNumChips" />
-      <UpdateNumChipsButton :d-chips=-10 @click="updateNumChips" />
+    <div class="button-box">
+      <div class="button-row">
+        <UpdateNumChipsButton :d-chips=1 @click="updateNumChips" />
+        <UpdateNumChipsButton :d-chips=5 @click="updateNumChips" />
+        <UpdateNumChipsButton :d-chips=10 @click="updateNumChips" />
+      </div>
+      <div class="button-row">
+        <UpdateNumChipsButton :d-chips=-1 @click="updateNumChips" />
+        <UpdateNumChipsButton :d-chips=-5 @click="updateNumChips" />
+        <UpdateNumChipsButton :d-chips=-10 @click="updateNumChips" />
+      </div>
     </div>
   </div>
 </template>
@@ -71,15 +73,26 @@ input {
   justify-content: center;
   height: 100%;
   width: 100%;
+  row-gap: 1rem;
 
   background-color: rgba(255, 255, 255, 0.1);
-  padding: 20px;
-  margin: 20px;
-  border-radius: 0.5em;
+  padding: 10px 20px;
+  //margin: 20px;
+  border-radius: 0.5rem;
+}
+
+@media only screen and (max-width: 600px) {
+  .wrapper {
+    padding: 20px;
+  }
+
+  .button-box {
+    display: none;
+  }
 }
 
 .wrapper p {
-  font-size: 2em;
+  font-size: 2rem;
 }
 
 .button-row {
@@ -91,11 +104,13 @@ input {
   height: 100%;
 }
 
-.button-row * {
-  width: 50px;
-  height: 50px;
+.button-row > * {
+  font-size: 1rem;
+  width: 3rem;
+  height: 3rem;
+  flex-shrink: 0;
+  flex-grow: 0;
   font-family: 'Raleway', sans-serif;
-  font-size: 1em;
 }
 
 </style>

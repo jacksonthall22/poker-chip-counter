@@ -1,5 +1,5 @@
 <script lang="ts">
-import ChipStackBox from "@/components/ChipStackBox.vue";
+import ChipStackBox from "./components/ChipStackBox.vue";
 
 
 // https://stackoverflow.com/a/16233919/7304977
@@ -17,7 +17,7 @@ export default {
   components: {ChipStackBox},
   data() {
     return {
-      totalValue: 0
+      totalValue: 0,
     }
   },
   methods: {
@@ -33,7 +33,7 @@ export default {
 
 <template>
   <header>
-    <img alt="Poker Cash Out" class="logo" src="./assets/card-suits.png" width="150" height="150" />
+    <img alt="Poker Cash Out" class="logo" src="./assets/card-suits.png"/>
     <div class="wrapper">
       <h1 class="green">Poker Cash Out</h1>
       <h3>
@@ -44,41 +44,38 @@ export default {
   </header>
 
   <main>
-    <ChipStackBox @total-changed="this.onTotalValueChange" ref="chipStackBox"/>
+    <ChipStackBox @total-changed=this.onTotalValueChange ref="chipStackBox"/>
   </main>
 </template>
 
 <style scoped>
-header {
-  line-height: 1.5;
-  width: 100%;
-}
 
 .logo {
-  display: block;
-  margin: 0 auto 2rem;
   background-color: antiquewhite;
-  border-radius: 100px;
-  padding: 20px;
+  border-radius: 50%;
+  padding: 1rem;
+  height: 5rem;
+  width: 5rem;
 }
 
+header {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  text-align: center;
+  font-size: 1.5rem;
+  margin-top: 3rem;
+}
 
-@media (min-width: 1024px) {
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
   header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
+    margin-top: 5rem;
   }
-
   .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-    flex-direction: row;
+    width: 8rem;
+    height: 8rem;
   }
 }
+
 </style>
