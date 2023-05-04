@@ -12,7 +12,8 @@
   "dependencies": {
     "express": "^4.18.2",
     "serve-static": "^1.15.0",
-    "vue": "^3.2.47"
+    "vue": "^3.2.47",
+    "vue-autosize-input": "^0.1.1"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.0.0",
