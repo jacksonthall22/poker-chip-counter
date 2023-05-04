@@ -93,10 +93,9 @@ export default defineComponent({
 <!--      @change="onChange"-->
 <!--  />-->
   <div class="chip">
-    <p class="currencySymbol">$</p>
     <input id="input"
            type="number"
-           min="0"
+           min=0
            :value="value"
            @input="onInput"
            @change="onChange"
@@ -136,17 +135,27 @@ export default defineComponent({
   height: 50%;
   line-height: 1rem;
   border: none;
+  border-radius: 50%;
+  fill-opacity: 0.8;
 
   padding: 0;
   margin: 0 5px;
 
   font-weight: bold;
-  font-size: 2rem;
+  font-size: 1.75rem;
   vertical-align: middle;
 
-  background-color: v-bind(bgColor);
-  color: v-bind(textColor);
+  background-color: v-bind(textColor);
+  color: v-bind(bgColor);
   text-align: center;
+}
+.chip:before {
+  content: '$';
+  position: absolute;
+  left: 0.5rem;
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: v-bind(textColor);
 }
 
 /* Chrome, Safari, Edge, Opera */

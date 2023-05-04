@@ -27,6 +27,19 @@ export default defineComponent({
       this.numChips += dChips;
       this.numChips = Math.max(this.numChips, 0);
       this.$emit('numChipsChanged')
+    },
+    onInput(e) : void {
+      let newNumChips = Math.max(parseInt(e.target.value.trim()), 0);
+
+      if (!isNaN(newNumChips)) {
+        this.numChips = newNumChips
+        this.$emit("numChipsChanged", newNumChips)
+      } else {
+        this.numChips = 0
+      }
+    },
+    onChange(e) : void {
+      e.target.value = this.numChips
     }
   },
   computed: {
@@ -43,7 +56,11 @@ export default defineComponent({
                :color="color"
                @value-changed="onValueChanged"
                ref="chip" />
-    <p>× {{numChips}}</p>
+    <p>× <input type="number"
+                :value="numChips"
+                min=0
+                @input="onInput"
+                @change="onChange" /></p>
     <div class="button-box">
       <div class="button-row">
         <UpdateNumChipsButton :d-chips=1 @click="updateNumChips" />
@@ -95,6 +112,29 @@ input {
   font-size: 2rem;
 }
 
+.wrapper input {
+  width: 5rem;
+  text-align: center;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 0.2rem;
+  padding: 0.5rem 1rem;
+  color: inherit;
+  font-size: inherit;
+}
+
+/* Chrome, Safari, Edge, Opera */
+.wrapper input::-webkit-outer-spin-button,
+.wrapper input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+.wrapper input[type=number] {
+  -moz-appearance: textfield;
+}
+
 .button-row {
   display: flex;
   flex-direction: row;
@@ -111,6 +151,7 @@ input {
   flex-shrink: 0;
   flex-grow: 0;
   font-family: 'Raleway', sans-serif;
+  font-weight: bold;
 }
 
 </style>
